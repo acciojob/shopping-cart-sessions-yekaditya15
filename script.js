@@ -54,17 +54,14 @@ function renderCart() {
   });
 }
 
-// Add item to cart
+// Add item to cart (Add the same product multiple times)
 function addToCart(productId) {
+  const cart = getCart();
   const product = products.find((p) => p.id === productId);
-  let cart = getCart();
-
-  // Avoid duplicate entries
-  const existingProduct = cart.find((item) => item.id === productId);
-  if (!existingProduct) {
-    cart.push(product);
-  }
-
+  
+  // Add the same product to the cart, multiple times if clicked
+  cart.push({ ...product });
+  
   saveCart(cart);
   renderCart();
 }
