@@ -54,14 +54,15 @@ function renderCart() {
   });
 }
 
-// Add item to cart (Add the same product multiple times)
+// Add item to cart (keep only the last added product)
 function addToCart(productId) {
-  const cart = getCart();
+  // Find the product to be added
   const product = products.find((p) => p.id === productId);
-  
-  // Add the same product to the cart, multiple times if clicked
-  cart.push({ ...product });
-  
+
+  // Create a new array with just the current product
+  const cart = [{ ...product }];
+
+  // Save the updated cart with only the current product
   saveCart(cart);
   renderCart();
 }
